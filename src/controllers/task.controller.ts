@@ -1,10 +1,10 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 
-const helloWorld = async (req: Request, res: Response) => {
+const helloWorld = async (req: Request, res: Response, next: NextFunction) => {
     try {
         res.status(200).send({ message: 'Hello AAAMB' });
     } catch (error) {
-        console.log(error);
+        next(error);
     }
 };
 
