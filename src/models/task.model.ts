@@ -36,7 +36,8 @@ const taskSchema = new Schema<ITask>(
                 'Tags field must be an array of unique, not repeated, strings.'
             ]
         },
-        history: [{ change: String, date: { type: Date, default: Date.now() } }]
+        history: [{ change: String, date: { type: Date, default: Date.now() } }],
+        deletedAt: { type: Date, default: null }
     },
     { timestamps: true }
 );

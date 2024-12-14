@@ -10,4 +10,5 @@ export interface ITask {
     dueDate: Date;
     tags?: Array<string>;
     history: Array<ITaskHistory>;
+    deletedAt?: Date;
 }
