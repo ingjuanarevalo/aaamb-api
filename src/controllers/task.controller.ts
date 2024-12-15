@@ -11,15 +11,15 @@ import { isEqual } from 'lodash';
 const createTask = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { title, status, dueDate } = req.body;
-        // Line 10 verifies that title, status or dueDate are not empty
+        // Verifies that title, status or dueDate are not empty
         if (!title || !status || !dueDate) return next(new AppError('Title or Status or DueDate are empty', 400));
 
-        // Lines 13, 14 and 15 verify that tags property is an array and then clean it from repeated values by creating a Set
+        // Verifies that tags property is an array and then clean it from repeated values by creating a Set
         let { tags } = req.body;
         if (!Array.isArray(tags)) return next(new AppError('Tags property is not an array', 400));
         tags = Array.from(new Set(tags));
 
-        // Lines 18 and 19 verify that dueDate format is valid
+        // Verifies that dueDate format is valid
         const dueDateIsValid = DateTime.fromISO(dueDate).isValid;
         if (!dueDateIsValid) return next(new AppError('DueDate has not a valid format', 400));
 
@@ -35,7 +35,7 @@ const createTask = async (req: Request, res: Response, next: NextFunction) => {
             history: [{ change: 'Task has been created', date: now }]
         };
         const taskCreated = await Task.create(taskToCreate);
-        // Line 32 returns the created task
+        // Returns the created task
         res.status(201).send({ task: taskCreated });
     } catch (error) {
         next(error);
@@ -122,15 +122,15 @@ const updateTask = async (req: Request, res: Response, next: NextFunction) => {
         if (!taskId || !Types.ObjectId.isValid(taskId)) return next(new AppError('Task ID is invalid or empty', 400));
 
         const { title, status, dueDate } = req.body;
-        // Line 126 verifies that title, status or dueDate are not empty
+        // Verifies that title, status or dueDate are not empty
         if (!title || !status || !dueDate) return next(new AppError('Title or Status or DueDate are empty', 400));
 
-        // Lines 129, 130 and 131 verify that tags property is an array and then clean it from repeated values by creating a Set
+        // Verifies that tags property is an array and then clean it from repeated values by creating a Set
         let { tags } = req.body;
         if (!Array.isArray(tags)) return next(new AppError('Tags property is not an array', 400));
         tags = Array.from(new Set(tags));
 
-        // Lines 134, 135 and 136 verify that dueDate format is valid
+        // Verifies that dueDate format is valid
         const dueDateDT = DateTime.fromISO(dueDate);
         const dueDateIsValid = dueDateDT.isValid;
         if (!dueDateIsValid) return next(new AppError('DueDate has not a valid format', 400));
@@ -180,7 +180,7 @@ const updateTask = async (req: Request, res: Response, next: NextFunction) => {
         }
         Object.assign(existingTask, newTaskValues);
         const taskUpdated = await existingTask.save();
-        // Line 184 returns the updated task
+        // Returns the updated task
         res.status(201).send({ task: taskUpdated });
     } catch (error) {
         next(error);

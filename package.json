@@ -5,10 +5,12 @@
   "scripts": {
     "start": "nodemon ./src/bin/www.ts",
     "build:prod": "rm -rf ./dist && babel ./src -d ./dist --ignore=\"./src/**/*.spec.ts\" --extensions \".ts,.js\"",
-    "serve:prod": "npm run build:prod && pm2 reload ecosystem.config.js --env production"
+    "serve:prod": "npm run build:prod && pm2 reload ecosystem.config.js --env production",
+    "lint": "eslint ."
   },
   "dependencies": {
     "cookie-parser": "~1.4.7",
+    "cors": "^2.8.5",
     "debug": "~4.4.0",
     "dotenv": "^16.4.7",
     "express": "~4.21.2",
@@ -27,6 +29,7 @@
     "@babel/runtime": "^7.26.0",
     "@eslint/js": "^9.16.0",
     "@types/cookie-parser": "^1.4.8",
+    "@types/cors": "^2.8.17",
     "@types/debug": "^4.1.12",
     "@types/express": "^5.0.0",
     "@types/lodash": "^4.17.13",
