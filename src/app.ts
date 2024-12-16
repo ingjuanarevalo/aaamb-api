@@ -7,7 +7,7 @@ import db from './database/db';
 import errorHandler from './error/app-error.controller';
 
 const app = express();
-const domainWhitelist = ['http://localhost:4200'];
+const domainWhitelist = ['http://localhost:4200', 'http://3.129.207.112:4200'];
 const corsOptionsDelegate = {
     origin: (origin: string, callback: any) => {
         if (domainWhitelist.indexOf(origin) !== -1) {
