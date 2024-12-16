@@ -181,7 +181,7 @@ const updateTask = async (req: Request, res: Response, next: NextFunction) => {
         Object.assign(existingTask, newTaskValues);
         const taskUpdated = await existingTask.save();
         // Returns the updated task
-        res.status(201).send({ task: taskUpdated });
+        res.status(200).send({ task: taskUpdated });
     } catch (error) {
         next(error);
     }
